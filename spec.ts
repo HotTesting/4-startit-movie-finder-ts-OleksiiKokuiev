@@ -1,6 +1,6 @@
-import {browser, element, By} from 'protractor'
+import {browser, element, By, $} from 'protractor'
 expect as any
-describe('Test', function () {
+//describe('Test', function () {
     // it('First test', function () {
     //     const URL = 'https://movies-finder.firebaseapp.com/'
     //     browser.get(URL)
@@ -22,21 +22,57 @@ describe('Test', function () {
     //     expect(searchField.getAttribute('placeholder')).toEqual('Search for movies...')
     //
     // })
-    it('Third test', function () {
-        const URL = 'https://movies-finder.firebaseapp.com/'
+    // it('Third test', function () {
+    //     const URL = 'https://movies-finder.firebaseapp.com/'
+    //
+    //     browser.get(URL)
+    //     browser.sleep(3000)
+    //     let searchField = element(By.css('input.form-control'))
+    //     //   expect(browser.getCurrentUrl()).toEqual(URL);
+    //     //   searchField.isDisplayed()
+    //     //expect(searchField.isPresent()).toBeTruthy()
+    //     //expect(searchField.isDisplayed()).toBeTruthy()
+    //     searchField.sendKeys('HELLO WORLD')
+    //     browser.sleep(3000)
+    //     element(By.css('span.input-group-btn button.btn btn-primary')).click()
+    //     browser.sleep(5000)
+    //     //expect(searchField.getAttribute('placeholder')).toEqual('Search for movies...')
+    //
+    //  })
+//})
+    describe ('Selectors', function (){
 
-        browser.get(URL)
-        browser.sleep(3000)
-        let searchField = element(By.css('input.form-control'))
-        //   expect(browser.getCurrentUrl()).toEqual(URL);
-        //   searchField.isDisplayed()
-        //expect(searchField.isPresent()).toBeTruthy()
-        //expect(searchField.isDisplayed()).toBeTruthy()
-        searchField.sendKeys('HELLO WORLD')
-        browser.sleep(3000)
-        element(By.css('span.input-group-btn button.btn btn-primary')).click()
-        browser.sleep(5000)
-        //expect(searchField.getAttribute('placeholder')).toEqual('Search for movies...')
+        // it ('ID', function (){
+        //     browser.get('')
+        //
+        //     let idElem = element(By.id('navbar'))
+        //
+        //     expect(idElem.getAttribute('id')).toEqual('navbar')
+        //                     })
 
-     })
-})
+        // it ('Name', function (){
+        //     browser.get('')
+        //
+        //     let idElem = element(By.name('searchStr'))
+        //
+        //     expect(idElem.getAttribute('name')).toEqual('searchStr')
+        // })
+
+        // it ('LinkText', function (){
+        //     browser.get('')
+        //
+        //     let idElem = element(By.linkText('Action'))
+        //
+        //     expect(idElem.getText('Action')).toEqual('Action')
+        // })
+
+        it ('CSS Locator', function (){
+            browser.get('')
+
+            let button = $('button')
+
+            expect(idElem.getText('Action')).toEqual('Action')
+        })
+
+
+    })
