@@ -3,7 +3,15 @@ expect as any
 describe('Movies finder testing', function () {
 
     const URL = 'https://movies-finder.firebaseapp.com/'
+
+    //Locators
     let searchField = $('input[name=searchStr]')
+    let goButton = $('.navbar-header button[aria-controls=navbar]')
+    let searchSingleResult = $('movies>.jumbotron+div movie-card a[title]')
+
+    //Test data
+    let movieForSingleSearch = 'The Shawshank Redemption'
+    //let searchResultTitle = 500
 
     it('Title of Movies Finder is "Movies Finder"', function () {
         console.log ('Test 1: Title of Movies Finder is "Movies Finder"')
@@ -14,12 +22,13 @@ describe('Movies finder testing', function () {
         expect(browser.getTitle()).toEqual('Movies Finder');
         console.log ('Title of opened web page matches "Movies Finder"')
 
-    })
+    });
 
     it('Search field is displayed on the Home page', function () {
         console.log ('Test 2: Search field is displayed on the Home page')
         browser.get(URL)
         browser.sleep(3000)
+        console.log ('Movie Finder is opened');
         expect(searchField.isDisplayed()).toBeTruthy();
         console.log('Search field is displayed')
         expect(searchField.getAttribute('placeholder')).toEqual('Search for movies...')
@@ -27,20 +36,31 @@ describe('Movies finder testing', function () {
 
     });
 
-
-
-
-
-    it('User is able to make a search', function () {
-        console.log ('Test 1: User is able to make a search is going')
+    it('User is able to find single movie', function () {
+        console.log ('Test 3: User is able to find single movie')
         browser.get(URL)
-        browser.sleep(5000)
-        expect(browser.getCurrentUrl()).toEqual(URL)
-        console.log ('Web page is opened')
-        expect(browser.getTitle()).toEqual('Movies Finder')
-        console.log ('Title of opened web page matches "Movies Finder"')
+        browser.sleep(3000)
+        console.log ('Movie Finder is opened');
+        searchField.click()
+        searchField.sendKeys(movieForSingleSearch)
+        goButton.click()
+        expect(searchSingleResult.getAttribute('title')).toContain('Shawshank')
+        console.log ('Required single movie has been found')
 
-    })
+    });
+
+    it('', function () {
+        console.log ('Test 3: User is able to find single movie')
+        browser.get(URL)
+        browser.sleep(3000)
+        console.log ('Movie Finder is opened');
+        searchField.click()
+        searchField.sendKeys(movieForSingleSearch)
+        goButton.click()
+        expect(searchSingleResult.getAttribute('title')).toContain('Shawshank')
+        console.log ('Required single movie has been found')
+
+    });
 
 
     //
