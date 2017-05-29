@@ -1,4 +1,4 @@
-import {browser, element, By, $} from 'protractor'
+import {browser, element, By, $, $$} from 'protractor'
 expect as any
 describe('Movies finder testing', function () {
 
@@ -6,12 +6,16 @@ describe('Movies finder testing', function () {
 
     //Locators
     let searchField = $('input[name=searchStr]')
-    let goButton = $('.navbar-header button[aria-controls=navbar]')
+    let goButton = $('span button[type="button"]')
     let searchSingleResult = $('movies>.jumbotron+div movie-card a[title]')
+    let movieCards = $$('movies>.jumbotron+div movie-card a[title]')
 
     //Test data
     let movieForSingleSearch = 'The Shawshank Redemption'
-    //let searchResultTitle = 500
+    let searchByOneSymbol = '9'
+
+    //Temp variables
+    let i = 1
 
     it('Title of Movies Finder is "Movies Finder"', function () {
         console.log ('Test 1: Title of Movies Finder is "Movies Finder"')
@@ -44,23 +48,28 @@ describe('Movies finder testing', function () {
         searchField.click()
         searchField.sendKeys(movieForSingleSearch)
         goButton.click()
-        expect(searchSingleResult.getAttribute('title')).toContain('Shawshank')
+        browser.sleep(10000)
+        expect(searchSingleResult.getAttribute('title')).toContain(movieForSingleSearch)
         console.log ('Required single movie has been found')
 
     });
 
-    it('', function () {
-        console.log ('Test 3: User is able to find single movie')
+    it('User is able to make a search even by 1 symbol', function () {
+        console.log('Test 4: User is able to make a search even by 1 symbol')
         browser.get(URL)
         browser.sleep(3000)
-        console.log ('Movie Finder is opened');
+        console.log('Movie Finder is opened');
         searchField.click()
-        searchField.sendKeys(movieForSingleSearch)
+        searchField.sendKeys(searchByOneSymbol)
         goButton.click()
-        expect(searchSingleResult.getAttribute('title')).toContain('Shawshank')
-        console.log ('Required single movie has been found')
+        browser.sleep(10000)
+        movieCards.each(function (elem) {
+            expect(elem.getText()).toContain(searchByOneSymbol)
+            console.log('Required movies has been found ' + i++)
+        })
+    })
 
-    });
+
 
 
     //
